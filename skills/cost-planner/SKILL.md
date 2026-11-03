@@ -44,7 +44,7 @@ Then recommend one option in a sentence. Useful patterns:
 
 - Draft at `720p`, then make only the chosen clips at `1080p`.
 - Several short clips usually cost less than one long clip and are easier to redo.
-- Leave some budget for one or two retakes; failed jobs are not charged, but clips the user does not like are.
+- Leave some budget for one or two retakes; failed jobs are not charged, but clips the user does not like are, and so are outputs the safety review blocks.
 
 If the user plans to run it, mention that each job must also fit the per-job limit and daily limit shown by `get_balance`.
 

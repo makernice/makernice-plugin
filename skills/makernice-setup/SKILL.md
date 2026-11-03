@@ -27,7 +27,7 @@ Summarize the `get_balance` result in plain words:
 | `connection_spend_limit_usd`, `connection_spent_usd` | Total cap for this connection (null means no cap) and how much it has used. |
 | `connection_daily_limit_usd`, `connection_spent_today_usd` | Daily cap for this connection (null means no cap) and how much it has used today. The day resets at 00:00 UTC. |
 
-Failed jobs are not charged.
+Failed jobs are not charged. If a finished output is blocked by the safety review for a policy violation, the job is still charged.
 
 ## 3. Find the lowest-cost test video
 

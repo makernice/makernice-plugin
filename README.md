@@ -12,7 +12,7 @@ Generate Seedance, Kling, Wan and MiniMax videos and Seedream and Qwen images wi
 
 - Prices are in **USD** and are deducted from your prepaid Makernice balance. The live price list is at [makernice.com/pricing](https://makernice.com/pricing/).
 - Every job is priced before it runs. The agent shows you the price, and the job is refused if the price is higher than the cap you approved (`max_cost_usd`).
-- **Failed jobs are not charged**: the held amount is released in full. Queued jobs can be canceled for a full release. See [failed generations](https://makernice.com/pricing/failed-generations/).
+- **Failed jobs are not charged**: the held amount is released in full. Queued jobs can be canceled for a full release. If a finished output is blocked by output moderation for a policy violation, the job is still charged; you can contact support for a manual review. See [failed generations](https://makernice.com/pricing/failed-generations/).
 - Each connection has a per-job limit and the account has a daily limit, both shown by `get_balance`.
 
 ## Skills

@@ -171,7 +171,7 @@
     {
       "name": "generate",
       "title": "Generate video or image",
-      "description": "Start a video or image generation job and charge the locked price from the balance. The job is refused if the price exceeds max_cost_usd. Returns a job_id; poll check_job for the result. Failed jobs are not charged. Reference images must be public https URLs.",
+      "description": "Start a video or image generation job and charge the locked price from the balance. The job is refused if the price exceeds max_cost_usd. Returns a job_id; poll check_job for the result. Failed jobs are not charged; a finished output blocked by output moderation is still charged. Reference images must be public https URLs.",
       "inputSchema": {
         "type": "object",
         "properties": {
