@@ -1,0 +1,10 @@
+{
+  "name": "makernice",
+  "version": "0.2.0",
+  "description": "Makernice video and image generation in chat: Seedance, Kling, Wan and MiniMax videos, Seedream and Qwen images. See the price in USD before every job and cap what each job can spend.",
+  "mcpServers": {
+    "makernice": {
+      "httpUrl": "https://mcp.makernice.com/mcp"
+    }
+  }
+}

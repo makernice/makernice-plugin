@@ -37,6 +37,30 @@ Claude Code:
 /plugin install makernice@makernice
 ```
 
+Cursor: copy this repository to `~/.cursor/plugins/local/makernice/`, then run Developer: Reload Window.
+
+Gemini CLI:
+
+```
+gemini extensions install https://github.com/makernice/makernice-plugin
+```
+
+Hermes Agent: install and enable the plugin, then add the server to `~/.hermes/config.yaml` with `auth: oauth` so Hermes connects your Makernice account through the browser. The browser step uses a localhost callback, so run it on the machine where your browser is.
+
+```
+hermes plugins install makernice
+hermes plugins enable makernice
+```
+
+```yaml
+mcp_servers:
+  makernice:
+    url: "https://mcp.makernice.com/mcp"
+    auth: oauth
+```
+
+LobeHub: add Makernice from the LobeHub MCP market.
+
 Skills only, for other agents:
 
 ```
