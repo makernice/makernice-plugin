@@ -1,0 +1,21 @@
+{
+  "name": "makernice",
+  "owner": {
+    "name": "Makernice Team",
+    "url": "https://makernice.com"
+  },
+  "metadata": {
+    "description": "Makernice plugin for video and image generation."
+  },
+  "plugins": [
+    {
+      "name": "makernice",
+      "source": "./",
+      "description": "Makernice video and image generation in chat: Seedance, Kling, Wan and MiniMax videos, Seedream and Qwen images. See the price in USD before every job, cap what each job can spend, and pay nothing for failed jobs. Skills for setup, product videos, trend templates and budget planning.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "homepage": "https://makernice.com",
+      "repository": "https://github.com/makernice/makernice-plugin"
+    }
+  ]
+}

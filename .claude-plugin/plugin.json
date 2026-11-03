@@ -1,0 +1,25 @@
+{
+  "name": "makernice",
+  "version": "0.1.0",
+  "description": "Makernice video and image generation in chat: Seedance, Kling, Wan and MiniMax videos, Seedream and Qwen images. See the price in USD before every job, cap what each job can spend, and pay nothing for failed jobs. Skills for setup, product videos, trend templates and budget planning.",
+  "icon": "./.claude-plugin/icon.png",
+  "author": {
+    "name": "Makernice Team",
+    "url": "https://makernice.com"
+  },
+  "homepage": "https://makernice.com",
+  "privacyPolicyUrl": "https://makernice.com/privacy/",
+  "repository": "https://github.com/makernice/makernice-plugin",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "image",
+    "seedance",
+    "kling",
+    "wan",
+    "minimax",
+    "seedream",
+    "qwen",
+    "mcp"
+  ]
+}

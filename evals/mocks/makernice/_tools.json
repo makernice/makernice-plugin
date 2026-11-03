@@ -1,0 +1,436 @@
+{
+  "tools": [
+    {
+      "name": "list_models",
+      "title": "List models and prices",
+      "description": "List the available video and image models with their modes, resolutions, durations and unit prices in USD. Pass `model` to get the full parameter details for one model before calling estimate_cost or generate.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "description": "Model id to get full parameter details for",
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      },
+      "annotations": {
+        "title": "List models and prices",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "estimate_cost",
+      "title": "Estimate cost",
+      "description": "Calculate the price in USD of a generation request without creating anything or charging. Use it to compare models, resolutions and durations before calling generate.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "t2v",
+                      "i2v",
+                      "flf",
+                      "r2v",
+                      "t2i",
+                      "i2i"
+                    ]
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4000
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "resolution": {
+                    "type": "string"
+                  },
+                  "aspect_ratio": {
+                    "type": "string"
+                  },
+                  "image_url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "description": "https URL"
+                  },
+                  "last_image_url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "description": "https URL"
+                  },
+                  "reference_images": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "description": "https URL"
+                    }
+                  },
+                  "seed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2147483647
+                  },
+                  "generate_audio": {
+                    "type": "boolean"
+                  },
+                  "prompt_expansion": {
+                    "type": "string",
+                    "enum": [
+                      "off",
+                      "balanced",
+                      "quality"
+                    ]
+                  },
+                  "negative_prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  },
+                  "watermark": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "model",
+                  "mode",
+                  "prompt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "template": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "images": {
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048,
+                      "description": "https URL"
+                    }
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4000
+                  },
+                  "resolution": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "aspect_ratio": {
+                    "type": "string",
+                    "maxLength": 20
+                  }
+                },
+                "required": [
+                  "template",
+                  "images"
+                ],
+                "additionalProperties": false
+              }
+            ],
+            "description": "Generation parameters: either model parameters or { template, images }"
+          }
+        },
+        "required": [
+          "input"
+        ]
+      },
+      "annotations": {
+        "title": "Estimate cost",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "generate",
+      "title": "Generate video or image",
+      "description": "Start a video or image generation job and charge the locked price from the balance. The job is refused if the price exceeds max_cost_usd. Returns a job_id; poll check_job for the result. Failed jobs are not charged. Reference images must be public https URLs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "t2v",
+                      "i2v",
+                      "flf",
+                      "r2v",
+                      "t2i",
+                      "i2i"
+                    ]
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4000
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "resolution": {
+                    "type": "string"
+                  },
+                  "aspect_ratio": {
+                    "type": "string"
+                  },
+                  "image_url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "description": "https URL"
+                  },
+                  "last_image_url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "description": "https URL"
+                  },
+                  "reference_images": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "description": "https URL"
+                    }
+                  },
+                  "seed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2147483647
+                  },
+                  "generate_audio": {
+                    "type": "boolean"
+                  },
+                  "prompt_expansion": {
+                    "type": "string",
+                    "enum": [
+                      "off",
+                      "balanced",
+                      "quality"
+                    ]
+                  },
+                  "negative_prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  },
+                  "watermark": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "model",
+                  "mode",
+                  "prompt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "template": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "images": {
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048,
+                      "description": "https URL"
+                    }
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4000
+                  },
+                  "resolution": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "aspect_ratio": {
+                    "type": "string",
+                    "maxLength": 20
+                  }
+                },
+                "required": [
+                  "template",
+                  "images"
+                ],
+                "additionalProperties": false
+              }
+            ],
+            "description": "Generation parameters: either model parameters or { template, images }"
+          },
+          "max_cost_usd": {
+            "description": "Maximum price in USD the user accepts for this job",
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "request_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[\\x21-\\x7e]+$",
+            "description": "Unique id for this request; retrying with the same id returns the same job instead of charging twice"
+          }
+        },
+        "required": [
+          "input",
+          "max_cost_usd",
+          "request_id"
+        ]
+      },
+      "annotations": {
+        "title": "Generate video or image",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "check_job",
+      "title": "Check job",
+      "description": "Get the status, result links and charged amount of a job. Set wait_s (up to 55) to wait for the job to finish before returning. Result links are valid for 24 hours; call again for fresh links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "job_id returned by generate"
+          },
+          "wait_s": {
+            "description": "Seconds to wait for completion, 0-55",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 55
+          }
+        },
+        "required": [
+          "job_id"
+        ]
+      },
+      "annotations": {
+        "title": "Check job",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "cancel_job",
+      "title": "Cancel job",
+      "description": "Cancel a job that is still queued and release the held amount in full. Jobs that already started generating cannot be canceled.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "job_id returned by generate"
+          }
+        },
+        "required": [
+          "job_id"
+        ]
+      },
+      "annotations": {
+        "title": "Cancel job",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "list_trends",
+      "title": "List trend templates",
+      "description": "List trending video templates (preset effects that turn the user's photos into a video) with their total price in USD per resolution. Use the template id in generate with { template, images }.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "annotations": {
+        "title": "List trend templates",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_balance",
+      "title": "Get balance",
+      "description": "Get the account balance, today's spending, the remaining daily limit and this connection's per-job limit in USD.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "annotations": {
+        "title": "Get balance",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_topup_link",
+      "title": "Get top-up link",
+      "description": "Get the link to the Makernice wallet page where the user can add balance themselves.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "annotations": {
+        "title": "Get top-up link",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    }
+  ]
+}
